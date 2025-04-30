@@ -1,0 +1,57 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+}
+
+header {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+header .auth-buttons {
+  margin-top: 20px;
+}
+
+header .auth-buttons .btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+header .auth-buttons .btn:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+  border-color: #0056b3;
+}
+
+.features {
+  text-align: center;
+  padding: 20px;
+}
+
+.feature {
+  margin: 20px 0;
+}
+
+footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+a:hover {
+  background-color: #6a1b9a;
+  color: white;
+}

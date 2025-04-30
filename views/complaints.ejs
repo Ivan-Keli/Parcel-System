@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Complaint</title>
+  <link rel="stylesheet" href="/css/complaints.css">
+</head>
+<body>
+  <header>
+    <h1>Submit Complaint</h1>
+    <nav>
+      <a href="/dashboard_user">Dashboard</a> |
+      <a href="/parcels/create">Create Parcel</a> |
+      <a href="/parcels/track">Track Parcel</a> |
+      <a href="/auth/logout">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <section class="complaint-form">
+      <h2>We’re here to help</h2>
+      <p>If you’re facing any issues, please let us know by filling out the form below:</p>
+      <form action="/complaints/submit" method="POST">
+        <label for="description">Complaint Description</label>
+        <textarea id="description" name="description" placeholder="Describe your issue in detail..." required></textarea>
+        <button type="submit">Submit Complaint</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

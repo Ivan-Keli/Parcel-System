@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Parcel</title>
+  <link rel="stylesheet" href="/css/parcel_tracking.css">
+</head>
+<body>
+  <header>
+    <h1>Track Your Parcel</h1>
+  </header>
+  <main>
+    <form action="/parcels/track" method="POST" class="tracking-form">
+      <input type="text" name="trackingId" placeholder="Enter Tracking ID" required>
+      <button type="submit">Track</button>
+    </form>
+
+    <% if (parcel) { %>
+      <section class="parcel-details">
+        <h2>Parcel Details</h2>
+        <p><strong>Tracking ID:</strong> <%= parcel.trackingId %></p>
+        <p><strong>Sender:</strong> <%= parcel.sender %></p>
+        <p><strong>Receiver:</strong> <%= parcel.receiver %></p>
+        <p><strong>Destination:</strong> <%= parcel.destination %></p>
+        <p><strong>Fee:</strong> Ksh <%= parcel.fee %></p>
+        <p><strong>Status:</strong> <%= parcel.status %></p>
+        <p><strong>Created At:</strong> <%= new Date(parcel.createdAt).toLocaleString() %></p>
+      </section>
+    <% } else { %>
+      <p class="no-parcel">No parcel found with this Tracking ID.</p>
+    <% } %>
+
+    <div class="navigation-link">
+      <a href="/dashboard_user">Back to Dashboard</a>
+    </div>
+  </main>
+</body>
+</html>

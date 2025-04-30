@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Parcels</title>
+  <link rel="stylesheet" href="/css/user_parcels.css">
+</head>
+<body>
+  <h2>My Parcels</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tracking ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Status</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% parcels.forEach(parcel => { %>
+        <tr>
+          <td><%= parcel.trackingId %></td>
+          <td><%= parcel.sender %></td>
+          <td><%= parcel.receiver %></td>
+          <td><%= parcel.status %></td>
+          <td><%= new Date(parcel.createdAt).toLocaleString() %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

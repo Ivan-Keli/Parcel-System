@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Parcels</title>
+  <link rel="stylesheet" href="/css/parcels.css">
+</head>
+<body>
+  <header>
+    <h1>Manage Parcels</h1>
+    <nav>
+      <a href="/dashboard_admin">Dashboard</a> |
+      <a href="/users">Manage Users</a> |
+      <a href="/complaints">View Complaints</a> |
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <!-- Search Functionality -->
+    <div class="search-bar">
+      <form action="/parcels/search" method="GET">
+        <input type="text" name="q" placeholder="Search parcels..." required>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tracking ID</th>
+          <th>Sender</th>
+          <th>Receiver</th>
+          <th>Destination</th>
+          <th>Fee (Ksh)</th>
+          <th>Payment Status</th>
+          <th>Delivery Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% parcels.forEach(parcel => { %>
+          <tr>
+            <td><%= parcel.trackingId %></td>
+            <td>
+              <form action="/parcels/edit/<%= parcel._id %>" method="POST">
+                <input type="text" name="sender" value="<%= parcel.sender %>" required>
+            </td>
+            <td>
+                <input type="text" name="receiver" value="<%= parcel.receiver %>" required>
+            </td>
+            <td>
+                <input type="text" name="destination" value="<%= parcel.destination %>" required>
+            </td>
+            <td>
+                <input type="number" name="fee" value="<%= parcel.fee %>" min="200" max="3500" required>
+            </td>
+            <td>
+              <select name="paymentStatus" required>
+                <option value="No" <%= parcel.paymentStatus === 'No' ? 'selected' : '' %>>No</option>
+                <option value="Yes" <%= parcel.paymentStatus === 'Yes' ? 'selected' : '' %>>Yes</option>
+              </select>
+            </td>
+            <td>
+              <select name="status" required>
+                <option value="Pending" <%= parcel.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                <option value="In Transit" <%= parcel.status === 'In Transit' ? 'selected' : '' %>>In Transit</option>
+                <option value="Delivered" <%= parcel.status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                <option value="Flagged" <%= parcel.status === 'Flagged' ? 'selected' : '' %>>Flagged</option>
+              </select>
+            </td>
+            <td>
+                <button type="submit">Save Changes</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

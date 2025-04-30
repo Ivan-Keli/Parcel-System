@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Parcel</title>
+  <link rel="stylesheet" href="/css/create_parcel.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/dashboard_user">Dashboard</a> |
+      <a href="/parcels/track">Track a Parcel</a> |
+      <a href="/complaints/submit">Submit a Complaint</a> |
+      <a href="/auth/logout">Logout</a>
+    </nav>
+    <h1>Create a New Parcel</h1>
+  </header>
+
+  <main>
+    <form action="/parcels/create" method="POST">
+      <label for="sender">Sender:</label>
+      <input type="text" name="sender" id="sender" required>
+      
+      <label for="receiver">Receiver:</label>
+      <input type="text" name="receiver" id="receiver" required>
+      
+      <label for="destination">Destination:</label>
+      <input type="text" name="destination" id="destination" required>
+      
+      <button type="submit">Create Parcel</button>
+    </form>
+
+    <% if (typeof trackingId !== 'undefined' && trackingId) { %>
+    <section class="success-message">
+      <h2>Parcel Created Successfully!</h2>
+      <p><strong>Tracking ID:</strong> <%= trackingId %></p>
+      <p><strong>Fee:</strong> Ksh <%= fee %></p>
+      <a href="/parcels/mine">View My Parcels</a>
+    </section>
+    <% } %>
+  </main>
+</body>
+</html>

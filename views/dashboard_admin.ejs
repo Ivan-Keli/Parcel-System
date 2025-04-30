@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard_admin.css">
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <a href="/users">Manage Users</a> |
+      <a href="/parcels">Manage Parcels</a> |
+      <a href="/complaints">View Complaints</a> |
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <section class="summary">
+      <h2>Summary</h2>
+      <p><strong>Total Users:</strong> <%= totalUsers %></p>
+      <p><strong>Total Parcels:</strong> <%= totalParcels %></p>
+      <p><strong>Pending Complaints:</strong> <%= pendingComplaints %></p>
+      <p><strong>Awaiting Payment:</strong> <%= awaitingPayment %></p> <!-- New row -->
+    </section>
+  </main>
+</body>
+</html>

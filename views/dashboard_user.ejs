@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard_user.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/dashboard_user">Dashboard</a> |
+      <a href="/parcels/create">Create a Parcel</a> |
+      <a href="/parcels/track">Track a Parcel</a> |
+      <a href="/complaints/submit">Submit a Complaint</a> |
+      <a href="/auth/logout">Logout</a>
+    </nav>
+    <h1>Welcome to Your Dashboard</h1>
+  </header>
+
+  <main>
+    <!-- Summary Section -->
+    <section class="summary">
+      <h2>Activity Summary</h2>
+      <p><strong>Pending Parcels:</strong> <%= pendingParcels %></p>
+      <p><strong>In Transit Parcels:</strong> <%= inTransitParcels %></p>
+      <p><strong>Delivered Parcels:</strong> <%= deliveredParcels %></p>
+      <p><strong>Awaiting Payment:</strong> <%= awaitingPayment %></p>
+    </section>
+
+    <!-- Parcel List -->
+    <section class="parcels">
+      <h2>Your Parcels</h2>
+      <% if (parcels.length > 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Tracking ID</th>
+              <th>Sender</th>
+              <th>Receiver</th>
+              <th>Fee (Ksh)</th>
+              <th>Payment Status</th>
+              <th>Delivery Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% parcels.forEach(parcel => { %>
+              <tr>
+                <td><%= parcel.trackingId %></td>
+                <td><%= parcel.sender %></td>
+                <td><%= parcel.receiver %></td>
+                <td><%= parcel.fee %></td>
+                <td><%= parcel.paymentStatus %></td>
+                <td>
+                  <% if (parcel.paymentStatus === 'Yes') { %>
+                    <%= parcel.status %>
+                  <% } else { %>
+                    Awaiting Payment
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <p>No parcels available.</p>
+      <% } %>
+    </section>
+
+    <!-- Complaints Section -->
+    <section class="complaints">
+      <h2>Your Complaints</h2>
+      <% if (complaints.length > 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Date Submitted</th>
+              <th>Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% complaints.forEach(complaint => { %>
+              <tr>
+                <td><%= complaint.description %></td>
+                <td><%= complaint.status %></td>
+                <td><%= new Date(complaint.createdAt).toLocaleString() %></td>
+                <td>
+                  <% if (complaint.reply && complaint.reply.trim() !== '') { %>
+                    <%= complaint.reply %>
+                  <% } else { %>
+                    Pending
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <p>No complaints submitted yet.</p>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>

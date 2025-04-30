@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Complaints</title>
+  <link rel="stylesheet" href="/css/view_complaints.css">
+</head>
+<body>
+  <header>
+    <h1>View Complaints</h1>
+    <nav>
+      <a href="/dashboard_admin">Dashboard</a> |
+      <a href="/users">Manage Users</a> |
+      <a href="/parcels">Manage Parcels</a> |
+      <a href="/auth/logout">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <section class="complaints-section">
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Reply</th>
+            <th>Created At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% complaints.forEach(complaint => { %>
+            <tr>
+              <td><%= complaint.description %></td>
+              <td><%= complaint.status %></td>
+              <td>
+                <% if (complaint.reply) { %>
+                  <%= complaint.reply %>
+                <% } else { %>
+                  Pending
+                <% } %>
+              </td>
+              <td><%= new Date(complaint.createdAt).toLocaleString() %></td>
+              <td>
+                <% if (!complaint.reply) { %>
+                  <form action="/complaints/reply/<%= complaint._id %>" method="POST">
+                    <textarea name="reply" placeholder="Enter your reply" required></textarea>
+                    <button type="submit">Send Reply</button>
+                  </form>
+                <% } else { %>
+                  <p>Reply Sent</p>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
